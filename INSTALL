@@ -1,6 +1,6 @@
 This has been tested on Ubuntu 12.04 running a standalone install of Security Onion.  It would likely work the same on a server install of Security Onion as well.
 
-Installation and setup:
+Get prerequisites:
 
 Acquire AfterGlow 1.6.5 and put the afterglow.pl script in the system path.  This should work:
         wget http://pixlcloud.com/wp-content/plugins/download-monitor/download.php?id=11 -O afterglow-1.6.5.tar.gz
@@ -14,6 +14,14 @@ Get and install the latest stable Graphviz.  The Ubuntu 12.04 package is too old
         tar zxvf graphviz-$TARGET_GV_VER.tar.gz
         cd graphviz-$TARGET_GV_VER
         ./configure && make && sudo make install
+
+Get nsm_event_graph and move the script and config files to appropriate locations
+
+        git clone https://github.com/branchnetconsulting/nsm_event_graph.git
+        cd nsm_event_graph/
+        mv /nsm_event_graph.pl /usr/bin/
+        mv nsm_event_graph.* /usr/etc/
+
 
 Usage example:    sudo nsm_event_graph.pl 24
        (builds an event graph ./graph.png based on the past 24 hours of events in Sguil,i
