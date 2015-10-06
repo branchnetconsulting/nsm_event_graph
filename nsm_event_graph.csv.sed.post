@@ -1,0 +1,11 @@
+# This sed script is applied by glowsnort to the CSV output of snort MySQL event data, after all other processing has occured,
+# so host names are accessible here where resolvable.
+
+### note this sed script is called with -r for extended regex support while the other sed scripts are not ###
+
+
+# LogMeIn connections like to throw FPs on the UA
+/\\nsecure\.logmein\.com\"/d
+
+# knock out any (1) counts.  Append count to nodes only if plural.  
+s/([0-9]) \(1\)\\n/\1\\n/g;s/([0-9]) \(1\)"/\1"/g

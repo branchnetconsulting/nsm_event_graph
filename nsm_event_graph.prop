@@ -1,0 +1,21 @@
+#
+# $fields[3] - 4th field in CSV, reserved for source IP count
+# $fields[4] - 5th field in CSV, reserved fpr target IP count
+#
+
+# Color the source node darker if involved in more events, lighter if involved in fewer
+color.source="wheat"  if ( $fields[3]<2 );
+color.source="gold" if ( $fields[3]>1 && $fields[3]<11 );
+color.source="orange"  if ( $fields[3]>10 && $fields[3]<101 );
+color.source="red"    if ( $fields[3]>100);
+
+color.event="cyan";
+
+# Color the target node darker if involved in more events, lighter if involved in fewer
+color.target="wheat"  if ( $fields[4]<2 );
+color.target="gold" if ( $fields[4]>1 && $fields[4]<11 );
+color.target="orange"  if ( $fields[4]>10 && $fields[4]<101 );
+color.target="red"    if ( $fields[4]>100);
+
+# keep labels strictly inside the nodes
+xlabels = 0
