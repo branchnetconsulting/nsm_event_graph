@@ -28,9 +28,9 @@
 HOURS=$1
 
 # Set what directory to read config files from, where to put working files, and where to write the final graph file
-CONFIG_DIR=~/nsm_event_graph
-WORKING_DIR=~/nsm_event_graph
-GRAPH_FILE=~/nsm_event_graph/nsm_event_graph.gif
+CONFIG_DIR=/usr/etc
+WORKING_DIR=/tmp
+GRAPH_FILE=/var/www/nsm_event_graph.gif
 
 if [ ! -e $WORKING_DIR ]; then
 	mkdir $WORKING_DIR 
