@@ -33,6 +33,6 @@ Try it out:
 
 Customize it:
 
-    The various nsm_event_graph.* files in /usr/etc/ to tune the graphs to your requirements.  
+    The various nsm_event_graph.* config files in /usr/etc/ must be tuned to meet your needs.  They are pre-configured with a variety of aggregations and filtering settings as examples.
     The config files are described in README.md as well as (lightly) internally documented.
     The script itself also allows you to easily change what file paths to use.  Edit to suit your needs.
