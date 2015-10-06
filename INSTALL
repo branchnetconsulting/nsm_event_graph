@@ -1,39 +1,38 @@
 This has been tested on Ubuntu 12.04 running a standalone install of Security Onion.  
-It would likely work the same on a server install of Security Onion, too.
+It would likely work the same on a server install of Security Onion, though I have not tested that.
 
 Get prerequisites:
 
 Acquire AfterGlow 1.6.5 and put the afterglow.pl script in the system path.  This should work:
 
-        wget http://pixlcloud.com/wp-content/plugins/download-monitor/download.php?id=11 -O afterglow-1.6.5.tar.gz
-        tar zxvf afterglow-1.6.5.tar.gz
-        sudo cp afterglow/afterglow.pl /usr/bin/
+    wget http://pixlcloud.com/wp-content/plugins/download-monitor/download.php?id=11 -O afterglow-1.6.5.tar.gz
+    tar zxvf afterglow-1.6.5.tar.gz
+    sudo cp afterglow/afterglow.pl /usr/bin/
 
-Get and install the latest stable Graphviz.  The Ubuntu 12.04 Graphviz package is too old, but Security Onion depends on it,
-so install from tarball in parallel to the existing old version, like this:
+Get and install the latest stable Graphviz.  The Ubuntu 12.04 Graphviz package is too old to work well with this graph type, 
+but Security Onion depends on it, so install from tarball in parallel to the existing old version, like this:
 
-        TARGET_GV_VER="2.38.0"
-        wget http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-$TARGET_GV_VER.tar.gz
-        tar zxvf graphviz-$TARGET_GV_VER.tar.gz
-        cd graphviz-$TARGET_GV_VER
-        ./configure && make && sudo make install
+    TARGET_GV_VER="2.38.0"
+    wget http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-$TARGET_GV_VER.tar.gz
+    tar zxvf graphviz-$TARGET_GV_VER.tar.gz
+    cd graphviz-$TARGET_GV_VER
+    ./configure && make && sudo make install
 
 Get nsm_event_graph and move the script and config files to appropriate locations
 
-        git clone https://github.com/branchnetconsulting/nsm_event_graph.git
-        cd nsm_event_graph/
-        sudo mv nsm_event_graph.pl /usr/bin/
-        sudo mv nsm_event_graph.* /usr/etc/
+    git clone https://github.com/branchnetconsulting/nsm_event_graph.git
+    cd nsm_event_graph/
+    sudo mv nsm_event_graph.pl /usr/bin/
+    sudo mv nsm_event_graph.* /usr/etc/
 
 Try it out:
 
-        sudo -i nsm_event_graph.pl 24
-        (builds an event graph viewable at http://HOSTNAME/nsm_event_graph.gif based on the past 24 hours of events in Sguil,
-        according to the specifications of various config files in the local directory)
+    sudo -i nsm_event_graph.pl 24
+    (builds an event graph viewable at http://HOSTNAME/nsm_event_graph.gif based on the past 24 hours of events in Sguil,
+    according to the specifications of various config files in the local directory)
 
 Customize it:
 
-        The various nsm_event_graph.* files in /usr/etc/ to tune the graphs to your requirements.  
-        The config files are described in README.md as well as (lightly) internally documented.
-        The script itself also allows you to easily change what file paths to use.  Edit to suit your needs.
-
+    The various nsm_event_graph.* files in /usr/etc/ to tune the graphs to your requirements.  
+    The config files are described in README.md as well as (lightly) internally documented.
+    The script itself also allows you to easily change what file paths to use.  Edit to suit your needs.
